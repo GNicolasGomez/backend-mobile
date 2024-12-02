@@ -1,0 +1,25 @@
+{
+  "development": {
+    "driver": "mysql",
+    "user": { "ENV": "root" },
+    "port": 3306,
+    "password": { "ENV": "MYSQL_PASSWORD" },
+    "database": { "ENV": "MYSQL_DATABASE" },
+    "multipleStatements": true
+  },
+  "staging": {
+    "driver": "mysql",
+    "user": { "ENV": "MYSQL_USER" },
+    "password": { "ENV": "MYSQL_PASSWORD" },
+    "database": { "ENV": "MYSQL_DATABASE" },
+    "multipleStatements": true
+  },
+  "production": {
+    "driver": "mysql",
+    "user": { "ENV": "MYSQL_USER" },
+    "password": { "ENV": "MYSQL_PASSWORD" },
+    "database": { "ENV": "MYSQL_DATABASE" },
+    "multipleStatements": true
+  },
+  "sql-file": true
+}
