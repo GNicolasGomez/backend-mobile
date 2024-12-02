@@ -46,7 +46,7 @@ module.exports.datastores = {
      *                                                                          *
      ***************************************************************************/
     adapter: "sails-mysql",
-    url: proccess.env.DATABASE_URL,
+    url: process.env.DATABASE_URL,
     ssl: {
       rejectUnauthorized: true,
     },
