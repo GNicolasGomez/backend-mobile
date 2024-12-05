@@ -17,7 +17,6 @@
  * If you're unsure or want advice, stop by:
  * https://sailsjs.com/support
  */
-
 var PRODUCTION_CONFIG = require("./production");
 //--------------------------------------------------------------------------
 // /\  Start with your production config, even if it's just a guess for now,
@@ -28,7 +27,7 @@ var PRODUCTION_CONFIG = require("./production");
 module.exports = Object.assign({}, PRODUCTION_CONFIG, {
   datastores: Object.assign({}, PRODUCTION_CONFIG.datastores, {
     default: Object.assign({}, PRODUCTION_CONFIG.datastores.default, {
-      // url: 'mysql://shared:some_password_everyone_knows@db.example.com:3306/my_staging_db',
+      url: process.env.DATABASE_URL,
       //--------------------------------------------------------------------------
       // /\  Hard-code your staging db `url`.
       // ||  (or use system env var: `sails_datastores__default__url`)

@@ -2,8 +2,8 @@
 
 module.exports = {
   attributes: {
-    idOffice: {
-      model: "Office",
+    company: {
+      model: "Companies",
     },
     name: {
       type: "string",
@@ -30,8 +30,11 @@ module.exports = {
     },
     status: {
       type: "string",
-      defaultsTo: "active",
-      isIn: ["active", "inactive"],
+      defaultsTo: "authenticated",
+      isIn: ["authenticated", "unauthenticated", "checking"],
+    },
+    isActive: {
+      type: "boolean",
     },
     token: { type: "string", allowNull: true },
   },

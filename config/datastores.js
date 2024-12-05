@@ -13,6 +13,7 @@
  * https://sailsjs.com/config/datastores
  */
 
+require('dotenv').config();
 module.exports.datastores = {
   /***************************************************************************
    *                                                                          *
@@ -45,10 +46,8 @@ module.exports.datastores = {
      *    (See https://sailsjs.com/config/datastores for help.)                 *
      *                                                                          *
      ***************************************************************************/
-    adapter: "sails-mysql",
+    adapter: "sails-postgresql",
     url: process.env.DATABASE_URL,
-    ssl: {
-      rejectUnauthorized: true,
-    },
+    ssl:true
   },
 };

@@ -44,8 +44,7 @@ module.exports = {
      *                                                                          *
      ***************************************************************************/
     default: {
-      adapter: "sails-mysql",
-      // url: "mysql://root:password@localhost:3306/terciario",
+      adapter: "sails-postgresql",
       url: process.env.DATABASE_URL,
       //--------------------------------------------------------------------------
       //  /\   To avoid checking it in to version control, you might opt to set
@@ -68,7 +67,7 @@ module.exports = {
        * https://sailsjs.com/config/datastores                                     *
        *                                                                           *
        ****************************************************************************/
-      ssl: { rejectUnauthorized: false },
+      // ssl: { rejectUnauthorized: false },
     },
   },
 
@@ -136,8 +135,10 @@ module.exports = {
      ***************************************************************************/
     cors: {
       allRoutes: true,
-      allowOrigins: ["http://localhost:3000"],
-      allowCredentials: true,
+      // allowOrigins: ["http://localhost:3000"],
+      // allowCredentials: true,
+      allowOrigins: "*",
+      allowCredentials: false,
       allowRequestHeaders: "content-type, authorization",
     },
   },

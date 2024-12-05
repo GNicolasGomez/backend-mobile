@@ -8,17 +8,15 @@
  * https://sailsjs.com/docs/concepts/policies
  */
 
+
 module.exports.policies = {
   // "*": "is-logged-in",
   // "*": "isAuthenticated",
   // // Bypass the `is-logged-in` policy for:
-  Office: {
-    all: ["isAuthenticated"],
-  },
-  Career: {
-    create: ["isAuthenticated"],
-  },
-  User: {
-    create: ["isAuthenticated"],
-  },
+  // Companies: {
+  //   all: ["isAuthenticated"],
+  // },
+  // User: {
+  //   create: ["isAuthenticated"],
+  // },
 };

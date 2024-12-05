@@ -7,6 +7,7 @@
 
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const secretKey = "secret key";
 
 module.exports = {
   all: async function (req, res) {
@@ -17,6 +18,55 @@ module.exports = {
     } catch (error) {
       console.error(error);
       res.status(500).send({ error: "Ocurrió un error interno." });
+    }
+  },
+  checkStatus: async function (req, res) {
+    try {
+      // Verificar si se proporciona un token
+      const authHeader = req.headers.authorization;
+
+      if (!authHeader) {
+        return res.status(401).send({ error: "Token no proporcionado" });
+      }
+
+      const token = authHeader.split(' ')[1];
+
+      // Verificar y decodificar el token
+      let decoded;
+      try {
+        decoded = jwt.verify(token, secretKey);
+      } catch (error) {
+        return res.status(401).send({ error: "Token inválido o expirado" });
+      }
+
+      console.log({decoded})
+
+      // Buscar al usuario por el ID decodificado en el token
+      const user = await Users.findOne({ email: decoded.email });
+
+      if (!user) {
+        return res.status(403).send({ error: "Usuario no encontrado" });
+      }
+
+      if (!user.isActive) {
+        return res.status(403).send({ error: "Usuario inactivo" });
+      }
+
+      // Opcional: retornar datos del usuario si es necesario
+      return res.send({
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        lastName: user.lastName,
+        isActive: user.isActive,
+        status: user.status,
+        token: user.token,
+        roles: user.role
+      });
+
+    } catch (error) {
+      console.error("Error en checkStatus:", error);
+      return res.status(500).send({ error: "Ocurrió un error interno" });
     }
   },
   login: async function (req, res) {
@@ -33,7 +83,7 @@ module.exports = {
       return res.status(403).send("Usuario no encontrado");
     }
 
-    if (user.isDeleted) {
+    if (!user.isActive) {
       return res.status(403).send("Usuario inactivo");
     }
 
@@ -55,9 +105,20 @@ module.exports = {
       expiresIn: "1d",
     });
 
-    res.send(user);
-  },
+    const dataResponse = {
+      id: user.id,
+      email: user.email,
+      name: user.name,
+      lastName: user.lastName,
+      isActive: user.isActive,
+      status: user.status,
+      token: user.token,
+      roles: user.role
+    }
 
+
+    res.send(dataResponse);
+  },
   create: async function (req, res) {
     try {
       const user = req.body;
@@ -82,7 +143,7 @@ module.exports = {
       }
 
       const newUser = await Users.create({
-        idOffice: user.idOffice,
+        company: user.company,
         name: user.name,
         lastName: user.lastName,
         dni: user.dni,

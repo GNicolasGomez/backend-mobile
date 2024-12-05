@@ -55,32 +55,16 @@ module.exports.routes = {
   "PUT   /api/v1/account/update-profile": { action: "account/update-profile" },
 
   //Login
-  "GET   /api/v1/users": "UserController.all",
-  "POST   /api/v1/users": "UserController.create",
-  "POST   /api/v1/login": "UserController.login",
-  // Offices
-  "GET   /api/v1/offices": "OfficeController.all",
-  "POST   /api/v1/offices": "OfficeController.create",
-  // Career
-  "GET   /api/v1/career": "CareerController.all",
-  "POST   /api/v1/career": "CareerController.create",
+  "GET   /api/v1/users": "UsersController.all",
+  "GET   /api/v1/check-status": "UsersController.checkStatus",
+  "POST   /api/v1/users": "UsersController.create",
+  "POST   /api/v1/login": "UsersController.login",
 
-  // Payments
-  "GET   /api/v1/payments/create-order": "PaymentsController.all",
-  "GET   /api/v1/payments/success": "PaymentsController.all",
-  "GET   /api/v1/payments/webhook": "PaymentsController.all",
+  //Login
+  "POST   /api/v1/companies": "CompaniesController.create",
+  "GET   /api/v1/companies": "CompaniesController.all",
 
-  "PUT   /api/v1/entrance/login": { action: "entrance/login" },
-  "POST  /api/v1/entrance/signup": { action: "entrance/signup" },
-  "POST  /api/v1/entrance/send-password-recovery-email": {
-    action: "entrance/send-password-recovery-email",
-  },
-  "POST  /api/v1/entrance/update-password-and-login": {
-    action: "entrance/update-password-and-login",
-  },
-  "POST  /api/v1/deliver-contact-form-message": {
-    action: "deliver-contact-form-message",
-  },
+
   "POST  /api/v1/observe-my-session": {
     action: "observe-my-session",
     hasSocketFeatures: true,
