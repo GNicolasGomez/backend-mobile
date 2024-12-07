@@ -16,6 +16,7 @@
 require('dotenv').config();
 
 console.log('DATABASE_URL:', process.env.DATABASE_URL);
+console.log('DB_URL:', process.env.DB_URL);
 console.log('MY_SECRET_KEY:', process.env.PORT);
 
 module.exports.datastores = {
@@ -51,7 +52,7 @@ module.exports.datastores = {
      *                                                                          *
      ***************************************************************************/
     adapter: "sails-postgresql",
-    url: process.env.DATABASE_URL,
+    url: process.env.DB_URL,
     ssl:true
   },
 };
