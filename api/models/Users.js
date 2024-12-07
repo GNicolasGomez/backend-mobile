@@ -34,6 +34,7 @@ module.exports = {
       isIn: ["authenticated", "unauthenticated", "checking"],
     },
     isActive: {
+      defaultsTo: true,
       type: "boolean",
     },
     token: { type: "string", allowNull: true },
