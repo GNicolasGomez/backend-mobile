@@ -13,7 +13,7 @@
  * https://sailsjs.com/config/datastores
  */
 
-require('dotenv').config({ path: './.env' });
+require('dotenv').config();
 
 console.log('DATABASE_URL:', process.env.DATABASE_URL);
 console.log('MY_SECRET_KEY:', process.env.PORT);
